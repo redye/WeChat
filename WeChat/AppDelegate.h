@@ -22,11 +22,10 @@ typedef void(^XMPPResultBlock)(XMPPResultType type);  //xmpp请求结果的 bloc
 @property (strong, nonatomic) UIWindow *window;
 @property (copy, nonatomic) XMPPResultBlock resultBlock;
 
-///退出登录
-- (void)logout;
-
 ///用户登录
 - (void)xmppUserLogin:(XMPPResultBlock)resultBlock;
+//退出登录
+- (void)xmppUserlogout;
 
 @end
 

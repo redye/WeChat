@@ -40,12 +40,16 @@
 
 - (IBAction)loginButtonClick:(UIButton *)sender {
     
-    NSString *user = self.userField.text;
+    NSString *userName = self.userField.text;
     NSString *password = self.passwordFeild.text;
     
-    [[NSUserDefaults standardUserDefaults] setObject:user forKey:@"user"];
-    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"user"];
+//    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    WCUser *user = [WCUser sharedWCUser];
+    user.name = userName;
+    user.password = password;
     
     //登录之前提示：正在登录
     [MBProgressHUD showMessage:@"正在登录中..." toView:self.view];  //加上 toView, 否则是将 其添加到 window 上，window 上是没有方向之分的，而 试图控制器是有方向的，所以要加上 toView
@@ -83,6 +87,9 @@
 
 - (void)enterMainPage
 {
+    //把用户登录成功的数据保存到沙河
+    [[WCUser sharedWCUser] saveUserToSandbox];
+    
     //隐藏模态窗口，因为登录界面是以模态方式弹出，引用计数也会加1
     [self dismissViewControllerAnimated:NO completion:nil];
     
@@ -91,6 +98,10 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     app.window.rootViewController = storyboard.instantiateInitialViewController;
+}
+
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dealloc

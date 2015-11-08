@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XMPPFramework.h"
+#import "WCNavigationController.h"
 
 @interface AppDelegate ()<XMPPStreamDelegate>
 {
@@ -22,7 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [self connectToHost];
+    //设置导航栏背景
+    [WCNavigationController setupNavigationTheme];
     
     return YES;
 }
@@ -47,7 +49,7 @@
     //设置登录用户 JID
     
     //从沙盒中获取用户名
-    NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    NSString *user = [WCUser sharedWCUser].name;
     XMPPJID *JID = [XMPPJID jidWithUser:user domain:@"xiaomu.local" resource:@"iPhone"];
     _xmppStream.myJID = JID;
     
@@ -71,7 +73,7 @@
     NSError *error = nil;
     
     //从沙盒中获取密码
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    NSString *password = [WCUser sharedWCUser].password;
     
     [_xmppStream authenticateWithPassword:password error:&error];
     if (error) {
@@ -137,7 +139,7 @@
 }
 
 #pragma mark - 退出登录
-- (void)logout
+- (void)xmppUserlogout
 {
     //发送离线消息
     XMPPPresence *offline = [XMPPPresence presenceWithType:@"unavailable"];
@@ -145,6 +147,12 @@
     
     //与服务器断开连接
     [_xmppStream disconnect];
+    
+    //回到登录界面
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    self.window.rootViewController = storyboard.instantiateInitialViewController;
+    
+    //更新用户的登录状态
 }
 
 #pragma mark - 登录

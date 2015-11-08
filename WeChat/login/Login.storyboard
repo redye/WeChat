@@ -25,7 +25,7 @@
         <!--登陆-->
         <scene sceneID="3KZ-yB-Ykn">
             <objects>
-                <viewController id="i67-z0-sBi" sceneMemberID="viewController">
+                <viewController id="i67-z0-sBi" customClass="WCLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D3c-77-5Ac"/>
                         <viewControllerLayoutGuide type="bottom" id="gPY-iG-SXm"/>
@@ -41,13 +41,6 @@
                                         <rect key="frame" x="100" y="0.0" width="80" height="80"/>
                                         <animations/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="zhangsan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4X-in-ICK">
-                                        <rect key="frame" x="0.0" y="83" width="280" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-iz-1vI">
                                         <rect key="frame" x="0.0" y="112" width="280" height="30"/>
                                         <animations/>
@@ -71,6 +64,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="忘记密码怎么办？"/>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="zhangsan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4X-in-ICK">
+                                        <rect key="frame" x="0.0" y="83" width="280" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +87,7 @@
                                     <constraint firstAttribute="width" constant="90" id="tfZ-zX-ODQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="其他方式登陆">
+                                <state key="normal" title="其他方式登录&gt;">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -105,6 +105,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="登陆" id="mAg-td-Jxm"/>
+                    <connections>
+                        <outlet property="avtarImageView" destination="QjV-VC-Jo1" id="XUL-C2-U3D"/>
+                        <outlet property="passwordField" destination="jcs-iz-1vI" id="CDp-FT-7x5"/>
+                        <outlet property="userLabel" destination="p4X-in-ICK" id="CDD-3v-R9S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1o6-TA-t2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,7 +150,6 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1JQ-Ut-ult" userLabel="password">
                                         <rect key="frame" x="0.0" y="65" width="400" height="40"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="lcR-Ud-gBg"/>
                                         </constraints>
@@ -166,7 +170,6 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zhangsan" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ah-fx-9ek" userLabel="userName">
                                         <rect key="frame" x="0.0" y="10" width="400" height="40"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="6ad-Zj-yVp"/>
                                         </constraints>
@@ -175,7 +178,6 @@
                                     </textField>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1JQ-Ut-ult" secondAttribute="trailing" id="14S-S6-M0X"/>
                                     <constraint firstItem="4ah-fx-9ek" firstAttribute="leading" secondItem="Ha6-7U-0ep" secondAttribute="leading" id="2qF-lz-S1k"/>
@@ -198,7 +200,13 @@
                             <constraint firstItem="Ha6-7U-0ep" firstAttribute="leading" secondItem="evy-V4-94t" secondAttribute="leading" constant="100" id="nJN-OG-3M0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="其他方式登陆" id="QB4-Da-fwn"/>
+                    <navigationItem key="navigationItem" title="其他方式登陆" id="QB4-Da-fwn">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="uAn-Yp-yuG">
+                            <connections>
+                                <action selector="cancel:" destination="JLg-18-hxZ" id="4Qp-7U-gnF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="leftContraint" destination="nJN-OG-3M0" id="oLr-Zl-IJ9"/>
                         <outlet property="loginButton" destination="XBd-E4-LH3" id="c7n-rl-CjY"/>
