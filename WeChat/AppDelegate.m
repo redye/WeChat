@@ -61,7 +61,7 @@
     //设置登录用户 JID
     
     //从沙盒中获取用户名
-    NSString *user = [WCUser sharedWCUser].name;
+    NSString *user = self.isRegisterOperation ? [WCUser sharedWCUser].registerName : [WCUser sharedWCUser].name;
     XMPPJID *JID = [XMPPJID jidWithUser:user domain:@"xiaomu.local" resource:@"iPhone"];
     _xmppStream.myJID = JID;
     
@@ -108,7 +108,12 @@
 {
     WCLog(@"与主机连接成功");
     //发送密码授权
-    [self sendPasswordToHost];
+    if (self.isRegisterOperation) {
+        //发送注册密码
+        [_xmppStream registerWithPassword:[WCUser sharedWCUser].registerPassword error:nil];
+    } else {
+        [self sendPasswordToHost];
+    }
 }
 
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
@@ -150,6 +155,18 @@
     }
 }
 
+#pragma mark 注册成功
+- (void)xmppStreamDidRegister:(XMPPStream *)sender
+{
+    WCLog(@"注册成功");
+}
+
+#pragma mark 注册失败
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error
+{
+    WCLog(@"注册失败 %@", error);
+}
+
 #pragma mark - 退出登录
 - (void)xmppUserlogout
 {
@@ -172,9 +189,23 @@
 #pragma mark - 登录
 - (void)xmppUserLogin:(XMPPResultBlock)resultBlock
 {
+    //如果以前连接过主机，断开
+    [_xmppStream disconnect];
+    
     //连接主机，成功后发送密码
     [self connectToHost];
     _resultBlock = resultBlock;
+}
+
+#pragma mark - 用户注册
+- (void)xmppUserRegister:(XMPPResultBlock)resultBlock
+{
+    _resultBlock = resultBlock;
+    
+    [_xmppStream disconnect];
+    
+    //连接主机，成功后发送密码
+    [self connectToHost];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

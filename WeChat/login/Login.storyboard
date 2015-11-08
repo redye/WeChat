@@ -73,6 +73,9 @@
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="注册"/>
+                                        <connections>
+                                            <segue destination="e0E-RK-SWc" kind="presentation" id="WuN-iF-YYg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -134,7 +137,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bN0-Wx-V4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="594" y="1091"/>
+            <point key="canvasLocation" x="618" y="1100"/>
         </scene>
         <!--其他登录框容器-->
         <scene sceneID="xm7-j5-G0h">
@@ -206,6 +209,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="其他方式登陆" id="QB4-Da-fwn">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="uAn-Yp-yuG">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="JLg-18-hxZ" id="4Qp-7U-gnF"/>
                             </connections>
@@ -222,6 +226,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dci-HY-sfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1295" y="1100"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MRG-Vl-WGN">
+            <objects>
+                <navigationController id="e0E-RK-SWc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AaJ-Hs-DDQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uur-qv-X2N" kind="relationship" relationship="rootViewController" id="Qja-hl-M1S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOn-Gy-ssI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1303" y="361"/>
+        </scene>
+        <!--注册-->
+        <scene sceneID="Mf2-2a-d9p">
+            <objects>
+                <viewController id="uur-qv-X2N" customClass="WCRegisterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ceb-XW-c4e"/>
+                        <viewControllerLayoutGuide type="bottom" id="QND-1j-4bI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RHU-2J-0SS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUV-Ae-IXT" userLabel="otherView">
+                                <rect key="frame" x="100" y="110" width="400" height="200"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vl5-5b-23M" userLabel="password">
+                                        <rect key="frame" x="0.0" y="65" width="400" height="40"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gBW-Sf-nOq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIe-EX-bqu" userLabel="userName">
+                                        <rect key="frame" x="0.0" y="10" width="400" height="40"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="W1g-xs-iwy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-1e-FWk" userLabel="loginBtn">
+                                        <rect key="frame" x="0.0" y="118" width="400" height="40"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="BhY-yW-ZDd"/>
+                                        </constraints>
+                                        <state key="normal" title="注册"/>
+                                        <connections>
+                                            <action selector="registerButtonClick:" destination="uur-qv-X2N" eventType="touchUpInside" id="lCW-ON-a9s"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mIe-EX-bqu" secondAttribute="trailing" id="61p-u5-BmP"/>
+                                    <constraint firstItem="mIe-EX-bqu" firstAttribute="top" secondItem="EUV-Ae-IXT" secondAttribute="top" constant="10" id="NZc-Dj-ka0"/>
+                                    <constraint firstItem="mIe-EX-bqu" firstAttribute="leading" secondItem="EUV-Ae-IXT" secondAttribute="leading" id="Oga-aX-4h5"/>
+                                    <constraint firstItem="GAN-1e-FWk" firstAttribute="top" secondItem="Vl5-5b-23M" secondAttribute="bottom" constant="13" id="Uda-SF-2bA"/>
+                                    <constraint firstAttribute="trailing" secondItem="GAN-1e-FWk" secondAttribute="trailing" id="b1R-Lf-8Bd"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vl5-5b-23M" secondAttribute="trailing" id="eDY-J4-1H9"/>
+                                    <constraint firstAttribute="height" constant="200" id="eg0-qV-rub"/>
+                                    <constraint firstItem="Vl5-5b-23M" firstAttribute="top" secondItem="mIe-EX-bqu" secondAttribute="bottom" constant="15" id="gw3-SL-sNS"/>
+                                    <constraint firstItem="GAN-1e-FWk" firstAttribute="leading" secondItem="EUV-Ae-IXT" secondAttribute="leading" id="khW-fF-5it"/>
+                                    <constraint firstItem="Vl5-5b-23M" firstAttribute="leading" secondItem="EUV-Ae-IXT" secondAttribute="leading" id="rm6-tD-mPf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EUV-Ae-IXT" firstAttribute="top" secondItem="ceb-XW-c4e" secondAttribute="bottom" constant="46" id="25J-lN-w8A"/>
+                            <constraint firstItem="EUV-Ae-IXT" firstAttribute="leading" secondItem="RHU-2J-0SS" secondAttribute="leading" constant="100" id="W7a-cr-04p"/>
+                            <constraint firstAttribute="trailing" secondItem="EUV-Ae-IXT" secondAttribute="trailing" constant="100" id="dut-up-fVi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="注册" id="46z-Xq-BFN">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="DBX-UC-6os">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="uur-qv-X2N" id="PYl-ZX-a7I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leftContraint" destination="W7a-cr-04p" id="TuZ-mc-yHa"/>
+                        <outlet property="passwordField" destination="Vl5-5b-23M" id="PBi-JL-oa1"/>
+                        <outlet property="registerButton" destination="GAN-1e-FWk" id="pf7-Js-nVq"/>
+                        <outlet property="rightContraint" destination="dut-up-fVi" id="haV-Yg-HOj"/>
+                        <outlet property="userField" destination="mIe-EX-bqu" id="ZKw-ie-UeD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnb-vS-q8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2004" y="370"/>
         </scene>
     </scenes>
     <resources>
