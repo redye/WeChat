@@ -26,6 +26,18 @@
     //设置导航栏背景
     [WCNavigationController setupNavigationTheme];
     
+    //从沙盒里加载用户的数据到单例
+    [[WCUser sharedWCUser] loadUserFromSandbox];
+    
+    //判断用户的登录状态， YES直接来到主界面
+    if ([WCUser sharedWCUser].loginStatus) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.window.rootViewController = storyboard.instantiateInitialViewController;
+        
+        //自动登录服务
+        [self xmppUserLogin:nil];
+    }
+    
     return YES;
 }
 
@@ -153,6 +165,8 @@
     self.window.rootViewController = storyboard.instantiateInitialViewController;
     
     //更新用户的登录状态
+    [WCUser sharedWCUser].loginStatus = NO;
+    [[WCUser sharedWCUser] saveUserToSandbox];
 }
 
 #pragma mark - 登录

@@ -41,23 +41,12 @@
                                         <rect key="frame" x="100" y="0.0" width="80" height="80"/>
                                         <animations/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-iz-1vI">
-                                        <rect key="frame" x="0.0" y="112" width="280" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-iz-1vI">
+                                        <rect key="frame" x="0.0" y="117" width="280" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsg-Ej-g8f">
-                                        <rect key="frame" x="0.0" y="142" width="280" height="30"/>
-                                        <animations/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-66-PpA">
-                                        <rect key="frame" x="44" y="180" width="30" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="注册"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGT-pE-JpU">
                                         <rect key="frame" x="160" y="180" width="120" height="30"/>
                                         <animations/>
@@ -71,6 +60,20 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsg-Ej-g8f">
+                                        <rect key="frame" x="0.0" y="150" width="280" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="登录"/>
+                                        <connections>
+                                            <action selector="loginButtonClick:" destination="i67-z0-sBi" eventType="touchUpInside" id="W6Q-yY-xg7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-66-PpA">
+                                        <rect key="frame" x="44" y="180" width="30" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="注册"/>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,6 +110,7 @@
                     <navigationItem key="navigationItem" title="登陆" id="mAg-td-Jxm"/>
                     <connections>
                         <outlet property="avtarImageView" destination="QjV-VC-Jo1" id="XUL-C2-U3D"/>
+                        <outlet property="loginButton" destination="Hsg-Ej-g8f" id="cCY-S6-484"/>
                         <outlet property="passwordField" destination="jcs-iz-1vI" id="CDp-FT-7x5"/>
                         <outlet property="userLabel" destination="p4X-in-ICK" id="CDD-3v-R9S"/>
                     </connections>

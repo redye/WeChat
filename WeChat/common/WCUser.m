@@ -10,6 +10,7 @@
 
 NSString *const kUserKey = @"user";
 NSString *const kPassKey = @"password";
+NSString *const kLoginStatus = @"loginStatus";
 
 @implementation WCUser
 
@@ -21,6 +22,7 @@ singleton_implementation(WCUser)
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:self.name forKey:kUserKey];
     [userDefaults setObject:self.password forKey:kPassKey];
+    [userDefaults setBool:self.loginStatus forKey:kLoginStatus];
     [userDefaults synchronize];
 }
 
@@ -28,6 +30,8 @@ singleton_implementation(WCUser)
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.name = [userDefaults objectForKey:kUserKey];
+    self.password = [userDefaults objectForKey:kPassKey];
+    self.loginStatus = [userDefaults boolForKey:kLoginStatus];
 }
 
 @end

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avtarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 
 @end
@@ -22,8 +23,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //设置 textField 的样式
+    self.passwordField.background = [UIImage stretchedImageWithName:@"operationbox_text"];
+    [self.passwordField addLeftViewWithImage:@"Card_Lock"];
+    
+    //设置 登录按钮的样式
+    [self.loginButton setResizeN_BG:@"fts_green_btn" H_BG:@"fts_green_btn_HL"];
+    
     //设置用户名为上次登录的用户名
     self.userLabel.text = [WCUser sharedWCUser].name;
+}
+
+- (IBAction)loginButtonClick:(id)sender {
+    //保存数据到单例
+    [WCUser sharedWCUser].name = self.userLabel.text;
+    [WCUser sharedWCUser].password = self.passwordField.text;
+    
+    //调用父类的登录
+    [super login];
 }
 
 - (void)didReceiveMemoryWarning {
