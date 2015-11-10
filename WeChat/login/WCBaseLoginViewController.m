@@ -24,11 +24,10 @@
 {
     //登录之前提示：正在登录
     [MBProgressHUD showMessage:@"正在登录中..." toView:self.view];  //加上 toView, 否则是将 其添加到 window 上，window 上是没有方向之分的，而 试图控制器是有方向的，所以要加上 toView
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    app.registerOperation = NO;
+    [WCXMPPTool sharedWCXMPPTool].registerOperation = NO;
     
     __weak typeof(self) safeSelf = self;
-    [app xmppUserLogin:^(XMPPResultType type) {
+    [[WCXMPPTool sharedWCXMPPTool] xmppUserLogin:^(XMPPResultType type) {
         [safeSelf handleResultType:type];  //这里会将 self 的引用计数 加1
     }];
 }
@@ -52,6 +51,9 @@
             case XMPPResultTypeNetError:
                 NSLog(@"网络超时");
                 [MBProgressHUD showError:@"网络不给力" toView:self.view];
+                break;
+                
+            default:
                 break;
         }
     });

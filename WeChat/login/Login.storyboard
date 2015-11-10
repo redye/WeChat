@@ -41,12 +41,6 @@
                                         <rect key="frame" x="100" y="0.0" width="80" height="80"/>
                                         <animations/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-iz-1vI">
-                                        <rect key="frame" x="0.0" y="117" width="280" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGT-pE-JpU">
                                         <rect key="frame" x="160" y="180" width="120" height="30"/>
                                         <animations/>
@@ -74,9 +68,15 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="注册"/>
                                         <connections>
-                                            <segue destination="e0E-RK-SWc" kind="presentation" id="WuN-iF-YYg"/>
+                                            <segue destination="e0E-RK-SWc" kind="presentation" identifier="Register" id="WuN-iF-YYg"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-iz-1vI">
+                                        <rect key="frame" x="0.0" y="112" width="280" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -230,7 +230,7 @@
         <!--Navigation Controller-->
         <scene sceneID="MRG-Vl-WGN">
             <objects>
-                <navigationController id="e0E-RK-SWc" sceneMemberID="viewController">
+                <navigationController id="e0E-RK-SWc" customClass="WCNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AaJ-Hs-DDQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -267,6 +267,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textChange" destination="uur-qv-X2N" eventType="editingChanged" id="CeV-RA-VOP"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIe-EX-bqu" userLabel="userName">
                                         <rect key="frame" x="0.0" y="10" width="400" height="40"/>
@@ -276,8 +279,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textChange" destination="uur-qv-X2N" eventType="editingChanged" id="oKq-qE-Sf5"/>
+                                        </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-1e-FWk" userLabel="loginBtn">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAN-1e-FWk" userLabel="loginBtn">
                                         <rect key="frame" x="0.0" y="118" width="400" height="40"/>
                                         <animations/>
                                         <constraints>

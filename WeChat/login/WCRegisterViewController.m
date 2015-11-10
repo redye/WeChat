@@ -42,17 +42,70 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//文本内容发生变化时调用
+- (IBAction)textChange {
+    WCLog(@"%@", self.userField.text);
+    
+    //设置注册按钮的可用状态
+    BOOL enable = self.userField.text.length != 0 && self.passwordField.text.length != 0;
+    self.registerButton.enabled = enable;
+    
+}
+
+
 - (IBAction)registerButtonClick:(id)sender {
+    //判断用户输入的是否为手机号码
+    if (![self.userField isTelphoneNum]) {
+        [MBProgressHUD showError:@"请输入正确的手机号码" toView:self.view];
+        return;
+    }
+    [self.view endEditing:YES];
     //将用户数据保存到单例
     [WCUser sharedWCUser].registerName = self.userField.text;
     [WCUser sharedWCUser].registerPassword = self.passwordField.text;
     
     //调用 appDelegate 用户注册的方法
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    app.registerOperation = YES;
-    [app xmppUserRegister:^(XMPPResultType type) {
-        
+    [WCXMPPTool sharedWCXMPPTool].registerOperation = YES;
+    
+    [MBProgressHUD showMessage:@"正在注册中..." toView:self.view];
+    __weak typeof(self) safeSelf = self;
+    [[WCXMPPTool sharedWCXMPPTool] xmppUserRegister:^(XMPPResultType type) {
+        [safeSelf handleResultType:type];
     }];
+}
+
+/**
+ *  处理注册的结果
+ *
+ *  @param type 注册的结果
+ */
+- (void)handleResultType:(XMPPResultType)type
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view];
+        switch (type) {
+            case XMPPResultTypeRegisterSuccess:
+            {
+                //注册成功，回到上个控制器
+                [MBProgressHUD showError:@"注册成功" toView:self.view];
+                if (self.delegate && [self.delegate respondsToSelector:@selector(registerViewControllerDidSuccessRegister:)]) {
+                    [self.delegate registerViewControllerDidSuccessRegister:self];
+                }
+            }
+                break;
+                
+            case XMPPResultTypeRegisterFailre:
+                [MBProgressHUD showError:@"注册失败，用户名重复" toView:self.view];
+                break;
+                
+            case XMPPResultTypeNetError:
+                [MBProgressHUD showError:@"网络不给力" toView:self.view];
+                break;
+                
+            default:
+                break;
+        }
+    });
 }
 
 @end

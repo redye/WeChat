@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8502EED21BF0796200769210 /* WCXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8502EED11BF0796200769210 /* WCXMPPTool.m */; };
 		850BB18A1BEEF4FA00733E04 /* WCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850BB1891BEEF4FA00733E04 /* WCNavigationController.m */; };
 		850BB18D1BEEFB1C00733E04 /* WCMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850BB18C1BEEFB1C00733E04 /* WCMeViewController.m */; };
 		850BB1901BEF0BD500733E04 /* WCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850BB18F1BEF0BD500733E04 /* WCLoginViewController.m */; };
@@ -188,6 +189,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8502EED01BF0796200769210 /* WCXMPPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCXMPPTool.h; sourceTree = "<group>"; };
+		8502EED11BF0796200769210 /* WCXMPPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCXMPPTool.m; sourceTree = "<group>"; };
 		850BB1881BEEF4FA00733E04 /* WCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCNavigationController.h; sourceTree = "<group>"; };
 		850BB1891BEEF4FA00733E04 /* WCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCNavigationController.m; sourceTree = "<group>"; };
 		850BB18B1BEEFB1C00733E04 /* WCMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMeViewController.h; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				850BB1921BEF0DF900733E04 /* Singleton.h */,
 				850BB1931BEF0E2900733E04 /* WCUser.h */,
 				850BB1941BEF0E2900733E04 /* WCUser.m */,
+				8502EED01BF0796200769210 /* WCXMPPTool.h */,
+				8502EED11BF0796200769210 /* WCXMPPTool.m */,
 			);
 			name = sington;
 			sourceTree = "<group>";
@@ -1745,6 +1750,7 @@
 				852E37D01BEA13D80039E376 /* AppDelegate.m in Sources */,
 				85878A401BEC4CFC0047C8AA /* XMPPIQ+LastActivity.m in Sources */,
 				85878A651BEC4CFC0047C8AA /* XMPPRegistration.m in Sources */,
+				8502EED21BF0796200769210 /* WCXMPPTool.m in Sources */,
 				85878A5F1BEC4CFC0047C8AA /* XMPPResultSet.m in Sources */,
 				85878A381BEC4CFC0047C8AA /* XMPPResourceMemoryStorageObject.m in Sources */,
 				85878A8E1BEC4CFC0047C8AA /* DDList.m in Sources */,

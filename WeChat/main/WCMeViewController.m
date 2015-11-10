@@ -27,8 +27,7 @@
 
 //注销登录
 - (IBAction)logout:(UIButton *)sender {
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app xmppUserlogout];
+    [[WCXMPPTool sharedWCXMPPTool] xmppUserlogout];
 }
 
 

@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeChat/AppDelegate.m"
-            timestampString = "468658754.31997"
+            filePath = "WeChat/login/WCLoginViewController.m"
+            timestampString = "468661734.362984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "-xmppStream:didNotAuthenticate:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeChat/login/WCLoginViewController.m"
+            timestampString = "468661734.362984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-registerViewControllerDidSuccessRegister:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

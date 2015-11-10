@@ -37,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pqr-qj-5hC">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pqr-qj-5hC" id="Omm-Tb-1NY">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -220,11 +220,11 @@
             </objects>
             <point key="canvasLocation" x="1231" y="483"/>
         </scene>
-        <!--Item-->
+        <!--我的-->
         <scene sceneID="gt2-gR-LaS">
             <objects>
                 <navigationController id="931-GF-k1f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" badgeValue="3" id="cRO-ro-YAT"/>
+                    <tabBarItem key="tabBarItem" title="我的" id="cRO-ro-YAT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gwK-j4-jvB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -240,6 +240,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bnO-yU-27d"/>
+        <segue reference="snf-Kq-glr"/>
     </inferredMetricsTieBreakers>
 </document>
