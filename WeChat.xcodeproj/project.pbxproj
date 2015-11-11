@@ -562,9 +562,8 @@
 		850BB1871BEEF49B00733E04 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				85C71A651BF2EDD10056BBFE /* navigation */,
 				850BB1911BEF0D2800733E04 /* sington */,
-				850BB1881BEEF4FA00733E04 /* WCNavigationController.h */,
-				850BB1891BEEF4FA00733E04 /* WCNavigationController.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1606,6 +1605,15 @@
 				85878AA51BEC4D240047C8AA /* libxml2.tbd */,
 			);
 			name = framework;
+			sourceTree = "<group>";
+		};
+		85C71A651BF2EDD10056BBFE /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				850BB1881BEEF4FA00733E04 /* WCNavigationController.h */,
+				850BB1891BEEF4FA00733E04 /* WCNavigationController.m */,
+			);
+			name = navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

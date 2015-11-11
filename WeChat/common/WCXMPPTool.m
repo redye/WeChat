@@ -14,6 +14,13 @@
 {
     XMPPStream *_xmppStream;
     XMPPResultBlock _resultBlock;
+    
+    //名片
+    XMPPvCardTempModule *_vCard;
+    XMPPvCardCoreDataStorage *_vCardStorage;
+    
+    //头像
+    XMPPvCardAvatarModule *_vCardAvatar;
 }
 
 @end
@@ -25,10 +32,20 @@ singleton_implementation(WCXMPPTool)
 #pragma mark 初始化 XMPPStream
 - (void)setupStream
 {
-    if (!_xmppStream) {
-        _xmppStream = [[XMPPStream alloc] init];
-        [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    }
+    _xmppStream = [[XMPPStream alloc] init];
+    [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    
+#warning 每一个模块添加后都需要激活
+    //添加电子名片模块
+    _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    _vCard = [[XMPPvCardTempModule alloc] initWithvCardStorage:_vCardStorage];
+    //激活名片
+    [_vCard activate:_xmppStream];
+    
+    //头像模块
+    _vCardAvatar = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCard];
+    [_vCardAvatar activate:_xmppStream];
+    
 }
 
 #pragma mark 连接服务器

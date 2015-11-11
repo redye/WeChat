@@ -9,12 +9,10 @@
 #import "AppDelegate.h"
 #import "XMPPFramework.h"
 #import "WCNavigationController.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
-@interface AppDelegate ()<XMPPStreamDelegate>
-{
-    XMPPStream *_xmppStream;
-    XMPPResultBlock _resultBlock;
-}
+@interface AppDelegate ()
 
 @end
 
@@ -22,6 +20,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSLog(@"%@", path);
+    
+    //打开XMPP的日志
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     //设置导航栏背景
     [WCNavigationController setupNavigationTheme];

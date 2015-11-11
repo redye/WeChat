@@ -37,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pqr-qj-5hC">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pqr-qj-5hC" id="Omm-Tb-1NY">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -52,7 +52,7 @@
                             <outlet property="delegate" destination="6mT-jy-Duy" id="9hg-sv-8Aj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" badgeValue="4" id="1lU-Rc-y37"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="tabbar_discoverHL" id="1lU-Rc-y37"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="ppe-zg-EjC"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbr-Rq-Rdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -108,11 +108,11 @@
             </objects>
             <point key="canvasLocation" x="2027" y="-230"/>
         </scene>
-        <!--Item-->
+        <!--微信-->
         <scene sceneID="rd3-72-FIw">
             <objects>
                 <navigationController id="bEE-yX-ihV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" badgeValue="1" id="CfS-ZQ-iD6"/>
+                    <tabBarItem key="tabBarItem" title="微信" image="tabbar_mainframe" badgeValue="1" id="CfS-ZQ-iD6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I5K-IJ-iIp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -202,11 +202,11 @@
             </objects>
             <point key="canvasLocation" x="1871" y="1235"/>
         </scene>
-        <!--Item-->
+        <!--通讯录-->
         <scene sceneID="EmH-L4-dzm">
             <objects>
                 <navigationController id="ia7-Iu-DnN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" badgeValue="2" id="wwU-u0-EMx"/>
+                    <tabBarItem key="tabBarItem" title="通讯录" image="tabbar_contacts" id="wwU-u0-EMx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NsW-zV-MTa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -220,11 +220,11 @@
             </objects>
             <point key="canvasLocation" x="1231" y="483"/>
         </scene>
-        <!--我的-->
+        <!--我i-->
         <scene sceneID="gt2-gR-LaS">
             <objects>
                 <navigationController id="931-GF-k1f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="cRO-ro-YAT"/>
+                    <tabBarItem key="tabBarItem" title="我i" image="tabbar_me" id="cRO-ro-YAT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gwK-j4-jvB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -239,7 +239,13 @@
             <point key="canvasLocation" x="954" y="1252"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_contacts" width="27" height="23"/>
+        <image name="tabbar_discoverHL" width="23" height="23"/>
+        <image name="tabbar_mainframe" width="25" height="23"/>
+        <image name="tabbar_me" width="23" height="23"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="snf-Kq-glr"/>
+        <segue reference="bnO-yU-27d"/>
     </inferredMetricsTieBreakers>
 </document>
