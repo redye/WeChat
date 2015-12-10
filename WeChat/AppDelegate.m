@@ -11,6 +11,7 @@
 #import "WCNavigationController.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "DDASLLogger.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,7 @@
     NSLog(@"%@", path);
     
     //打开XMPP的日志
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     //设置导航栏背景

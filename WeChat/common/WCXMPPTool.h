@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
+#import "XMPPFramework.h"
 
 typedef NS_ENUM(NSInteger, XMPPResultType) {
     XMPPResultTypeLoginSuccess, //登录成功
@@ -28,6 +29,14 @@ singleton_interface(WCXMPPTool)
  *  注册的标识，YES 代表注册，NO 代表登录
  */
 @property (assign, nonatomic, getter=isRegisterOperation) BOOL registerOperation;  //标识注册操作
+
+@property (strong, nonatomic, readonly) XMPPvCardTempModule *vCard;  //电子名片
+@property (strong, nonatomic, readonly) XMPPRosterCoreDataStorage *rosterStorage;;  //花名册数据库
+@property (strong, nonatomic, readonly) XMPPRoster *roster;
+@property (strong, nonatomic, readonly) XMPPStream *xmppStream;
+
+@property (strong, nonatomic, readonly) XMPPMessageArchiving *messageArchiving;
+@property (strong, nonatomic, readonly) XMPPMessageArchivingCoreDataStorage *messageStorage;
 
 /**
  *  用户登录

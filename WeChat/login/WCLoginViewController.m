@@ -58,9 +58,12 @@
     //获取注册控制器
     id destinationViewController = [segue destinationViewController];
     if ([destinationViewController isKindOfClass:[WCNavigationController class]]) {
-        WCRegisterViewController *registerViewController = (WCRegisterViewController *)[((WCNavigationController *)destinationViewController) topViewController];
-        //设置注册控制的代理
-        registerViewController.delegate = self;
+        WCNavigationController *navigation = (WCNavigationController *)destinationViewController;
+        if ([navigation.topViewController isKindOfClass:[WCRegisterViewController class]]) {
+            WCRegisterViewController *registerViewController = (WCRegisterViewController *)[((WCNavigationController *)destinationViewController) topViewController];
+            //设置注册控制的代理
+            registerViewController.delegate = self;
+        }
     }
 }
 

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
 
+static NSString *kDomain = @"xiaomu.local";
+
 @interface WCUser : NSObject
 
 @property (nonatomic, copy) NSString *name;
@@ -16,6 +18,7 @@
 @property (nonatomic, assign) BOOL loginStatus;  //登录的状态
 @property (nonatomic, copy) NSString *registerName; //用户注册的用户名
 @property (nonatomic, copy) NSString *registerPassword; //用户注册的密码
+@property (nonatomic, copy) NSString *jid;
 
 singleton_interface(WCUser)
 

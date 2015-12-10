@@ -34,4 +34,9 @@ singleton_implementation(WCUser)
     self.loginStatus = [userDefaults boolForKey:kLoginStatus];
 }
 
+- (NSString *)jid
+{
+    return [NSString stringWithFormat:@"%@@xiaomu.local", self.name, kDomain];
+}
+
 @end

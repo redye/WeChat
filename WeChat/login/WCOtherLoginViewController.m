@@ -64,7 +64,7 @@
     NSLog(@"登录界面释放 %s", __FUNCTION__);  //存在内存泄露问题
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }

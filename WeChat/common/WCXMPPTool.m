@@ -7,20 +7,22 @@
 //
 
 #import "WCXMPPTool.h"
-#import "XMPPFramework.h"
 #import "WCNavigationController.h"
 
 @interface WCXMPPTool ()<XMPPStreamDelegate>
 {
-    XMPPStream *_xmppStream;
+    
     XMPPResultBlock _resultBlock;
     
+    XMPPReconnect *_reconnect;
+    
     //名片
-    XMPPvCardTempModule *_vCard;
     XMPPvCardCoreDataStorage *_vCardStorage;
     
     //头像
     XMPPvCardAvatarModule *_vCardAvatar;
+    
+    
 }
 
 @end
@@ -36,6 +38,10 @@ singleton_implementation(WCXMPPTool)
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     
 #warning 每一个模块添加后都需要激活
+    //添加自动连接模块
+    _reconnect = [[XMPPReconnect alloc] init];
+    [_reconnect activate:_xmppStream];
+    
     //添加电子名片模块
     _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
     _vCard = [[XMPPvCardTempModule alloc] initWithvCardStorage:_vCardStorage];
@@ -46,7 +52,49 @@ singleton_implementation(WCXMPPTool)
     _vCardAvatar = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:_vCard];
     [_vCardAvatar activate:_xmppStream];
     
+    //花名册
+    _rosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
+    _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStorage];
+    [_roster activate:_xmppStream];
+    
+    //消息
+    _messageStorage = [[XMPPMessageArchivingCoreDataStorage alloc] init];
+    _messageArchiving = [[XMPPMessageArchiving alloc] initWithMessageArchivingStorage:_messageStorage];
+    [_messageArchiving activate:_xmppStream];
+    
+    //设置代理
+    [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    
 }
+
+#pragma mark - 销毁 XMPP
+- (void)teardownXMPP
+{
+    //移除代理
+    [_xmppStream removeDelegate:self];
+    
+    //停止模块
+    [_reconnect deactivate];
+    [_vCard deactivate];
+    [_vCardAvatar deactivate];
+    [_roster deactivate];
+    [_messageArchiving deactivate];
+    
+    //断开连接
+    [_xmppStream disconnect];
+    
+    //清空资源
+    _reconnect = nil;
+    _vCard = nil;
+    _vCardAvatar = nil;
+    _vCardStorage = nil;
+    _roster = nil;
+    _rosterStorage = nil;
+    _messageArchiving = nil;
+    _messageStorage = nil;
+    _xmppStream = nil;
+}
+
 
 #pragma mark 连接服务器
 - (void)connectToHost
@@ -211,6 +259,11 @@ singleton_implementation(WCXMPPTool)
     
     //连接主机，成功后发送密码
     [self connectToHost];
+}
+
+- (void)dealloc
+{
+    [self teardownXMPP];
 }
 
 @end
