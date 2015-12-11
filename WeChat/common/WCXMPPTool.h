@@ -10,7 +10,19 @@
 #import "Singleton.h"
 #import "XMPPFramework.h"
 
+
+//UIKIT_EXTERN NSString *const UIKeyboardWillChangeFrameNotification  NS_AVAILABLE_IOS(5_0);
+//UIKIT_EXTERN NSString *const WCLoginStatusDidChangedNotification;
+//UIKIT_EXTERN NSString *const WCLoginStatusKey;
+
+#define kWCLoginStatusDidChangedNotification @"WCLoginStatusDidChangedNotification"
+#define kWCLoginStatusKey @"WCLoginStatusKey"
+
+//NSString *const kWCLoginStatusDidChangedNotification = @"WCLoginStatusDidChangedNotification";
+//NSString *const kWCLoginStatusKey = @"WCLoginStatusKey";
+
 typedef NS_ENUM(NSInteger, XMPPResultType) {
+    XMPPResultTypeConnecting, //连接中
     XMPPResultTypeLoginSuccess, //登录成功
     XMPPResultTypeLoginFailure, //登录失败
     XMPPResultTypeNetError,

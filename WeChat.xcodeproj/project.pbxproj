@@ -43,6 +43,7 @@
 		8569D3E31C1A7BAD00FF162C /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569D3D11C1A7BAD00FF162C /* UIImageView+HighlightedWebCache.m */; };
 		8569D3E41C1A7BAD00FF162C /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569D3D31C1A7BAD00FF162C /* UIImageView+WebCache.m */; };
 		8569D3E51C1A7BAD00FF162C /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569D3D51C1A7BAD00FF162C /* UIView+WebCacheOperation.m */; };
+		8569D3E91C1AA7CB00FF162C /* WCHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569D3E81C1AA7CB00FF162C /* WCHistoryViewController.m */; };
 		8573BDCE1C168B180078D634 /* WCContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8573BDCD1C168B180078D634 /* WCContactViewController.m */; };
 		85878A171BEC4CFC0047C8AA /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 858788A71BEC4CFC0047C8AA /* XMPPAnonymousAuthentication.m */; };
 		85878A181BEC4CFC0047C8AA /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 858788AA1BEC4CFC0047C8AA /* XMPPDeprecatedDigestAuthentication.m */; };
@@ -285,6 +286,8 @@
 		8569D3D31C1A7BAD00FF162C /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		8569D3D41C1A7BAD00FF162C /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		8569D3D51C1A7BAD00FF162C /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		8569D3E71C1AA7CB00FF162C /* WCHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCHistoryViewController.h; sourceTree = "<group>"; };
+		8569D3E81C1AA7CB00FF162C /* WCHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHistoryViewController.m; sourceTree = "<group>"; };
 		8573BDCC1C168B180078D634 /* WCContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCContactViewController.h; sourceTree = "<group>"; };
 		8573BDCD1C168B180078D634 /* WCContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCContactViewController.m; sourceTree = "<group>"; };
 		858788A61BEC4CFC0047C8AA /* XMPPAnonymousAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPAnonymousAuthentication.h; sourceTree = "<group>"; };
@@ -662,6 +665,7 @@
 		851888BC1BF5B621006161C8 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8569D3E61C1AA7B600FF162C /* history */,
 				85BACD851C16D08B006D5B2B /* contact */,
 				85BACD841C16D082006D5B2B /* me */,
 			);
@@ -780,6 +784,15 @@
 				8569D3D51C1A7BAD00FF162C /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		8569D3E61C1AA7B600FF162C /* history */ = {
+			isa = PBXGroup;
+			children = (
+				8569D3E71C1AA7CB00FF162C /* WCHistoryViewController.h */,
+				8569D3E81C1AA7CB00FF162C /* WCHistoryViewController.m */,
+			);
+			name = history;
 			sourceTree = "<group>";
 		};
 		858788A21BEC4CFC0047C8AA /* lib */ = {
@@ -1946,6 +1959,7 @@
 				8502EED21BF0796200769210 /* WCXMPPTool.m in Sources */,
 				85878A5F1BEC4CFC0047C8AA /* XMPPResultSet.m in Sources */,
 				85878A381BEC4CFC0047C8AA /* XMPPResourceMemoryStorageObject.m in Sources */,
+				8569D3E91C1AA7CB00FF162C /* WCHistoryViewController.m in Sources */,
 				85878A8E1BEC4CFC0047C8AA /* DDList.m in Sources */,
 				85878A881BEC4CFC0047C8AA /* XMPPMessage+XEP_0280.m in Sources */,
 				85878A1E1BEC4CFC0047C8AA /* XMPPXOAuth2Google.m in Sources */,

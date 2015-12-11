@@ -81,7 +81,7 @@
         <!--Root View Controller-->
         <scene sceneID="iSm-lL-ZF2">
             <objects>
-                <tableViewController id="jn9-QC-xmi" sceneMemberID="viewController">
+                <tableViewController id="jn9-QC-xmi" customClass="WCHistoryViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hDo-fB-4dq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +104,25 @@
                             <outlet property="delegate" destination="jn9-QC-xmi" id="mSL-ac-EVD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bH9-91-j8i"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="bH9-91-j8i">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="SRN-p0-UML">
+                            <view key="customView" contentMode="scaleToFill" id="jzZ-Qt-IQ9">
+                                <rect key="frame" x="20" y="5" width="133" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ms0-hr-5ZJ">
+                                        <rect key="frame" x="0.0" y="8" width="20" height="20"/>
+                                        <animations/>
+                                        <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <animations/>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="indicatorView" destination="Ms0-hr-5ZJ" id="xg0-0X-zqB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzG-SX-1lN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

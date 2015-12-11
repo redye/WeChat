@@ -9,6 +9,8 @@
 #import "WCXMPPTool.h"
 #import "WCNavigationController.h"
 
+
+
 @interface WCXMPPTool ()<XMPPStreamDelegate>
 {
     
@@ -95,6 +97,18 @@ singleton_implementation(WCXMPPTool)
     _xmppStream = nil;
 }
 
+/**
+ *  通知 WCHistoryViewController 登录状态
+ *
+ *  @param resultType 登录状态
+ */
+- (void)postNotification:(XMPPResultType)resultType
+{
+    //将登录状态放入字典
+    NSDictionary *userInfo = @{kWCLoginStatusKey: @(resultType)};
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kWCLoginStatusDidChangedNotification object:self userInfo:userInfo];
+}
 
 #pragma mark 连接服务器
 - (void)connectToHost
@@ -122,6 +136,8 @@ singleton_implementation(WCXMPPTool)
     if (![_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error]) {
         WCLog(@"连接错误 %@", error);
     }
+    
+    [self postNotification:XMPPResultTypeConnecting];
 }
 
 #pragma mark 连接服务器成功后，发送密码授权
@@ -173,6 +189,11 @@ singleton_implementation(WCXMPPTool)
     if (error && _resultBlock) {
         _resultBlock(XMPPResultTypeNetError);
     }
+    
+    if (error) {
+
+        [self postNotification:XMPPResultTypeNetError];
+    }
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
@@ -183,6 +204,8 @@ singleton_implementation(WCXMPPTool)
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginSuccess);
     }
+    
+    [self postNotification:XMPPResultTypeLoginSuccess];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error
@@ -199,6 +222,8 @@ singleton_implementation(WCXMPPTool)
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginFailure);
     }
+    
+    [self postNotification:XMPPResultTypeLoginFailure];
 }
 
 #pragma mark 注册成功
