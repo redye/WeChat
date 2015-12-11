@@ -36,7 +36,7 @@ singleton_interface(WCXMPPTool)
 @property (strong, nonatomic, readonly) XMPPStream *xmppStream;
 
 @property (strong, nonatomic, readonly) XMPPMessageArchiving *messageArchiving;
-@property (strong, nonatomic, readonly) XMPPMessageArchivingCoreDataStorage *messageStorage;
+@property (strong, nonatomic, readonly) XMPPMessageArchivingCoreDataStorage *messageStorage;  //聊天的数据存储
 
 /**
  *  用户登录

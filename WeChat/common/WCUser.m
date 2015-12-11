@@ -36,7 +36,7 @@ singleton_implementation(WCUser)
 
 - (NSString *)jid
 {
-    return [NSString stringWithFormat:@"%@@xiaomu.local", self.name, kDomain];
+    return [NSString stringWithFormat:@"%@@%@", self.name, kDomain];
 }
 
 @end

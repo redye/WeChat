@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class WCProfileViewController;
+
+@protocol WCProfileViewControllerDelegate <NSObject>
+
+@optional
+- (void)profileViewController:(WCProfileViewController *)profileViewController didChangeHeaderImage:(UIImage *)headerImage;
+
+@end
+
 @interface WCProfileViewController : UITableViewController
+
+@property (nonatomic, assign) id<WCProfileViewControllerDelegate> delegate;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "WCContactViewController.h"
+#import "WCChatViewController.h"
 
 @interface WCContactViewController ()<NSFetchedResultsControllerDelegate>
 {
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     
     [self loadFriends];
+
 }
 
 - (void)loadFriends
@@ -124,15 +126,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //选中表格进入聊天界面
-    [self performSegueWithIdentifier:@"ChatSegue" sender:nil];
+    XMPPUserCoreDataStorageObject *friend = _resultsController.fetchedObjects[indexPath.row];
+    XMPPJID *friendJID = friend.jid;
+    [self performSegueWithIdentifier:@"ChatSegue" sender:friendJID];
 }
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    id destinationViewController = segue.destinationViewController;
+    if ([destinationViewController isKindOfClass:[WCChatViewController class]]) {
+        WCChatViewController *chatViewController = destinationViewController;
+        chatViewController.friendJID = sender;
+    }
 }
 
 

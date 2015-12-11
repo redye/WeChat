@@ -9,8 +9,9 @@
 #import "WCMeViewController.h"
 #import "AppDelegate.h"
 #import "XMPPvCardTemp.h"
+#import "WCProfileViewController.h"
 
-@interface WCMeViewController ()
+@interface WCMeViewController ()<WCProfileViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avtarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
@@ -52,6 +53,21 @@
 //注销登录
 - (IBAction)logout:(UIButton *)sender {
     [[WCXMPPTool sharedWCXMPPTool] xmppUserlogout];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    id destionationViewController = segue.destinationViewController;
+    if ([destionationViewController isKindOfClass:[WCProfileViewController class]]) {
+        WCProfileViewController *profileViewController = destionationViewController;
+        profileViewController.delegate = self;
+    }
+}
+
+#pragma mark - WCProfileViewControllerDelegate
+- (void)profileViewController:(WCProfileViewController *)profileViewController didChangeHeaderImage:(UIImage *)headerImage
+{
+    self.avtarImageView.image = headerImage;
 }
 
 

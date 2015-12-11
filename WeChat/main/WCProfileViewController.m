@@ -126,6 +126,9 @@
     UIImage *image = info[UIImagePickerControllerEditedImage];
     
     self.haedView.image = image;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(profileViewController:didChangeHeaderImage:)]) {
+        [self.delegate profileViewController:self didChangeHeaderImage:image];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
