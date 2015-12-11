@@ -68,7 +68,11 @@
     // 使用note字段充当电话
     self.phoneLabel.text = myVCard.note;
     
-    self.emailLabel.text = myVCard.mailer;
+//    self.emailLabel.text = myVCard.mailer;
+    
+    if (myVCard.emailAddresses.count > 0) {
+        self.emailLabel.text = myVCard.emailAddresses[0];
+    }
 
 }
 
@@ -152,6 +156,7 @@
     if ([destinationViewController isKindOfClass:[WCEditProfileViewController class]]) {
         WCEditProfileViewController *editProfileViewController = (WCEditProfileViewController *)destinationViewController;
         editProfileViewController.cell = sender;
+        editProfileViewController.delegate = self;
     }
 }
 
@@ -170,7 +175,10 @@
     
     vCard.title = self.titleLabel.text;
     vCard.note = self.phoneLabel.text;
-    vCard.mailer = self.emailLabel.text;
+//    vCard.mailer = self.emailLabel.text;
+    if (self.emailLabel.text.length > 0) {
+        vCard.emailAddresses = @[self.emailLabel.text];
+    }
     
     [[WCXMPPTool sharedWCXMPPTool].vCard updateMyvCardTemp:vCard];
 }
