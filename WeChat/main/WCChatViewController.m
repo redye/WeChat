@@ -9,6 +9,8 @@
 
 #import "WCChatViewController.h"
 #import "WCInputView.h"
+#import "HttpTool.h"
+#import "UIImageView+WebCache.h"
 
 @interface WCChatViewController ()<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
@@ -18,6 +20,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *inputViewBottomContraints;
 @property (nonatomic, strong) NSLayoutConstraint *inputViewHeightContraints;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) HttpTool *httpTool;
 
 @end
 
@@ -31,6 +34,16 @@
     [self addObservers];
     
     [self loadMessage];
+}
+
+- (HttpTool *)httpTool
+{
+    if (!_httpTool) {
+        _httpTool = [[HttpTool alloc] init];
+    }
+    
+    return _httpTool;
+
 }
 
 - (void)setUI
@@ -86,7 +99,38 @@
     //获取图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    //
+    //把图片发送到文件服务器
+    //http post put 方式上传图片
+    /**
+     * put 的实现文件上传没有 post 繁琐，而且比 post 快
+     * put 的文件上传路径就是下载路径
+     * 上传路径
+     */
+    // 1.取文件名
+    NSString *userName = [WCUser sharedWCUser].name;
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyyMMddhhmmss"];
+    NSString *dateString = [dateFormater stringFromDate:[NSDate date]];
+    NSString *fileName = [userName stringByAppendingString:dateString];
+    
+    // 2.拼接上传路径
+    NSString *urlString = [@"xxx" stringByAppendingString:fileName];
+    
+    // 3.使用HTTP put 上传
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.75);
+    [self.httpTool uploadData:imageData url:[NSURL URLWithString:urlString] progressBlock:^(CGFloat progress) {
+        NSLog(@"上传进度 %f", progress);
+    } completion:^(NSError *error) {
+        if (error) {
+            NSLog(@"图片数传失败 %@", error);
+        } else {
+            NSLog(@"图片上传成功");
+            //图片发送成功，把图片的 URL 传 openfire 服务器
+            [self sendMessageWithText:urlString bodyType:@"image"];
+        }
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITextViewDelegate
@@ -107,16 +151,18 @@
         textView.text = nil;
         //取出换行字符
         text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [self sendMessageWithText:text];
+        [self sendMessageWithText:text bodyType:@"text"];
         self.inputViewHeightContraints.constant = 50;
     } else {
         NSLog(@"%@", text);
     }
 }
 
-- (void)sendMessageWithText:(NSString *)text
+- (void)sendMessageWithText:(NSString *)text bodyType:(NSString *)bodyType
 {
     XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:self.friendJID];
+    
+    [message addAttributeWithName:@"bodyType" stringValue:bodyType];
     
     //添加内容
     [message addBody:text];
@@ -244,11 +290,30 @@
     
     //获取聊天消息对象
     XMPPMessageArchiving_Message_CoreDataObject *message = _resultController.fetchedObjects[indexPath.row];
-    if ([message.outgoing boolValue]) {
-        cell.textLabel.text = [NSString stringWithFormat:@"Me: %@", message.body];
+    
+    //判断是图片还是纯文本
+     NSString *chatType = [message.message attributeStringValueForName:@"bodyType"];
+    if ([chatType isEqualToString:@"image"]) {
+        //下载图片显示
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:message.body] placeholderImage:[UIImage imageNamed:@"DefaultHead"]];
+        cell.textLabel.text = nil;
+    } else if ([chatType isEqualToString:@"text"]) {
+        cell.imageView.image = nil;
+        if ([message.outgoing boolValue]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"Me: %@", message.body];
+        } else {
+            cell.textLabel.text = [NSString stringWithFormat:@"Other: %@", message.body];
+        }
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"Other: %@", message.body];
     }
+  
+    
+//    if ([message.outgoing boolValue]) {
+//        cell.textLabel.text = [NSString stringWithFormat:@"Me: %@", message.body];
+//    } else {
+//        cell.textLabel.text = [NSString stringWithFormat:@"Other: %@", message.body];
+//    }
     
     return cell;
 }
