@@ -64,6 +64,8 @@ singleton_implementation(WCXMPPTool)
     _messageArchiving = [[XMPPMessageArchiving alloc] initWithMessageArchivingStorage:_messageStorage];
     [_messageArchiving activate:_xmppStream];
     
+    _xmppStream.enableBackgroundingOnSocket = YES; //设置支持后台运行， iOS7 以前在模拟器上不支持后台运行
+    
     //设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     
@@ -243,6 +245,35 @@ singleton_implementation(WCXMPPTool)
         _resultBlock(XMPPResultTypeRegisterFailre);
     }
 }
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    NSLog(@"消息 %@", message.body);
+    //如果当前程序不在前台，发出一个本地通知
+    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
+        NSLog(@"在后台");
+        
+        //本地通知
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        
+        //设置内容
+        localNotification.alertBody = [NSString stringWithFormat:@"%@\n%@", message.fromStr, message.body];
+        localNotification.fireDate = [NSDate date];
+        
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        
+        //执行
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+}
+
+
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
+{
+    //在线、离线消息
+//    presence.from 消息是谁发送过来
+}
+
 
 #pragma mark - 退出登录
 - (void)xmppUserlogout

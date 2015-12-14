@@ -48,7 +48,25 @@
         
     }
     
+    //注册应用接收通知
+    // 在 iOS8 以后需要注册本地通知
+    // 在 iOS8 以前（不包括 iOS8），socket 是不支持后台运行的，当程序推到后台后，被挂起，接收不到本地通知
+    // 在 iOS7 要做配置 info.plist 文件，添加 VOIP，是得 socket 在后台运行， 同时设置 socket 支持后台运行， 即  _xmppStream.enableBackgroundingOnSocket = YES;
+    // iOS7 以前在模拟器上不支持后台运行
+    
+    //当用户将程序 kill 掉得时候，想要收到发送的信息，需要远程通知
+    if ([[UIDevice currentDevice].systemVersion floatValue] > 8.0) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    
     return YES;
+}
+
+#pragma mark - 远程通知
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
